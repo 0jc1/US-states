@@ -2,7 +2,7 @@ import type { EntityLevel, EntityStats, YearSeries } from './types'
 
 export type StatDirection = 'higherIsBetter' | 'lowerIsBetter' | 'neutral'
 export type StatFormat = 'int' | 'compact' | 'usd' | 'usdCompact' | 'pct' | 'index' | 'per100k' | 'years'
-export type StatGroup = 'People' | 'Economy' | 'Cost' | 'Safety'
+export type StatGroup = 'Score' | 'People' | 'Economy' | 'Cost' | 'Safety'
 
 export interface StatDef {
   id: StatId
@@ -21,6 +21,7 @@ export interface StatDef {
 }
 
 export type StatId =
+  | 'livability'
   | 'population'
   | 'demographics'
   | 'ageDistribution'
@@ -33,6 +34,20 @@ export type StatId =
   | 'totalGdp'
 
 export const STAT_DEFS: StatDef[] = [
+  {
+    id: 'livability',
+    label: 'Livability score',
+    shortLabel: 'Livability',
+    group: 'Score',
+    unit: '0–100',
+    format: 'index',
+    direction: 'higherIsBetter',
+    levels: ['state', 'city'],
+    seriesKey: 'livabilityScore',
+    description:
+      'Peer-relative move score: prosperity, jobs, affordability, safety, and recent growth. Percentile ranks within states or cities, then weighted. Not a prestige ranking — expensive coastal output scores lower when housing and crime offset it.',
+    palette: 'greens',
+  },
   {
     id: 'population',
     label: 'Population',
@@ -170,9 +185,9 @@ export const STAT_BY_ID: Record<StatId, StatDef> = Object.fromEntries(
   STAT_DEFS.map((s) => [s.id, s]),
 ) as Record<StatId, StatDef>
 
-export const STAT_GROUPS: StatGroup[] = ['People', 'Economy', 'Cost', 'Safety']
+export const STAT_GROUPS: StatGroup[] = ['Score', 'People', 'Economy', 'Cost', 'Safety']
 
-export const DEFAULT_STAT: StatId = 'population'
+export const DEFAULT_STAT: StatId = 'livability'
 
 export const YEARS = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026] as const
 export const MIN_YEAR = YEARS[0]

@@ -1,5 +1,6 @@
 import type { CityEntity, Entity, SourceInfo, StateEntity } from './types'
 import { STAT_BY_ID, type StatId } from './stats'
+import { attachLivabilityScores } from './score'
 import statesJson from '@/data/states.json'
 import citiesJson from '@/data/cities.json'
 import sourcesJson from '@/data/sources.json'
@@ -11,6 +12,7 @@ export const STATE_BY_FIPS: Record<string, StateEntity> = Object.fromEntries(
 )
 export const CITIES: CityEntity[] = citiesJson as CityEntity[]
 export const CITY_BY_ID: Record<string, CityEntity> = Object.fromEntries(CITIES.map((c) => [c.id, c]))
+attachLivabilityScores(STATE_LIST, CITIES)
 export const SOURCES: SourceInfo[] = sourcesJson as SourceInfo[]
 
 export function entityById(id: string | null | undefined): Entity | undefined {

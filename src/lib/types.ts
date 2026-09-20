@@ -56,6 +56,8 @@ export interface EntityStats {
   gdpPerCapita?: YearSeries
   /** current dollars */
   totalGdp?: YearSeries
+  /** peer-relative livability composite, 0..100 */
+  livabilityScore?: YearSeries
   industries?: Record<string, Industry[]>
 }
 

@@ -1,12 +1,7 @@
 {
-  "builtAt": "2026-09-20T09:42:02.674Z",
+  "builtAt": "2026-09-20T22:17:41.798Z",
   "notes": [
     "seed fallback loaded (Census/ACS/BEA/BLS/FBI/Zillow vintages)",
-    "wikipedia population: 51 states",
-    "wikipedia city population: 0",
-    "FAILED: https://download.bls.gov/pub/time.series/la/la.data.3.AllStatesS -> 403",
-    "Zillow ZHVI states: 51; Zillow ZHVI cities: 50",
-    "BEA RPP: 255 rows",
-    "FBI CDE crime: 0 states"
+    "offline build (pass --live to download official tables)"
   ]
 }

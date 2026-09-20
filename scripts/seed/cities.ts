@@ -143,7 +143,9 @@ export function buildFallbackCities(): CityEntity[] {
       unemploymentRate[y] = Math.round(((st.stats.unemploymentRate?.[y] ?? 4) + 0.4) * 10) / 10
       jobGrowth[y] = Math.round(((st.stats.jobGrowth?.[y] ?? 1) + 0.15) * 100) / 100
       gdpPerCapita[y] = Math.round((st.stats.gdpPerCapita?.[y] ?? 60000) * 1.08)
-      const crimeBoost = ['detroit', 'memphis', 'baltimore', 'st-louis', 'atlanta'].includes(c.id) ? 1.45 : 1.12
+    }
+    const crimeBoost = ['detroit', 'memphis', 'baltimore', 'st-louis', 'atlanta'].includes(c.id) ? 1.45 : 1.12
+    for (const y of Object.keys(st.stats.crimeRate ?? {})) {
       violentCrime[y] = Math.round((st.stats.violentCrime?.[y] ?? 400) * crimeBoost)
       propertyCrime[y] = Math.round((st.stats.propertyCrime?.[y] ?? 1800) * crimeBoost)
       crimeRate[y] = violentCrime[y] + propertyCrime[y]

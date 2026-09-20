@@ -58,6 +58,16 @@ async function main() {
 
   const sources: SourceInfo[] = [
     {
+      statId: 'livability',
+      dataset: 'Composite of BEA, BLS, Census, Zillow, and FBI series in this file',
+      publisher: 'US State Finder',
+      url: 'https://www.bea.gov/data/gdp/gdp-state',
+      vintage: 'Peer percentiles, 2019–2026',
+      years: '2019–2026',
+      notes:
+        'Weighted move score (prosperity 25%, affordability 25%, opportunity 20%, safety 20%, momentum 10%). States and cities scored separately. Uses 2025 levels for GDP, not GDP growth.',
+    },
+    {
       statId: 'population',
       dataset: 'Vintage 2025 Population Estimates (NST-EST2025) + Wikipedia tables',
       publisher: 'U.S. Census Bureau',
@@ -119,24 +129,25 @@ async function main() {
       dataset: 'Crime Data Explorer summarized rates',
       publisher: 'Federal Bureau of Investigation',
       url: 'https://cde.ucr.cjis.gov/',
-      vintage: '2019–2025 monthly; 2026 YTD if published',
-      years: '2019–2026',
+      vintage: 'FBI CDE latest complete year (2024); 2025–2026 fill-forward',
+      years: '2024–2026',
+      notes: 'No invented 2019–2023 path. Earlier years are omitted unless a live CDE overlay succeeds.',
     },
     {
       statId: 'gdpPerCapita',
       dataset: 'GDP by state (SAGDP) / metro (CAGDP)',
       publisher: 'U.S. Bureau of Economic Analysis',
       url: 'https://www.bea.gov/data/gdp/gdp-state',
-      vintage: 'Annual 2025 (Mar 2026 release)',
-      years: '2019–2025',
+      vintage: 'BEA SAGDP1 current-dollar, 2019–2025; 2026 is that state’s 2024→2025 growth',
+      years: '2019–2026',
     },
     {
       statId: 'totalGdp',
       dataset: 'GDP by state, current dollars (SAGDP1)',
       publisher: 'U.S. Bureau of Economic Analysis',
       url: 'https://www.bea.gov/data/gdp/gdp-state',
-      vintage: 'Annual 2025',
-      years: '2019–2025',
+      vintage: 'BEA SAGDP1 current-dollar, 2019–2025; 2026 is that state’s 2024→2025 growth',
+      years: '2019–2026',
     },
   ]
 

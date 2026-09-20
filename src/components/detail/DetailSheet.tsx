@@ -14,6 +14,7 @@ import type { Entity } from '@/lib/types'
 import { AgeChart } from './AgeChart'
 import { DemographicsChart } from './DemographicsChart'
 import { IndustriesList } from './IndustriesList'
+import { PillarBreakdown } from './PillarBreakdown'
 import { SourcesFooter } from './SourcesFooter'
 import { StatCard } from './StatCard'
 import { TrendChart } from './TrendChart'
@@ -65,6 +66,17 @@ export function DetailSheet({
               </div>
               <h3 className="mt-5 mb-2 font-heading text-sm font-medium">{STAT_BY_ID[activeStat].label} trend</h3>
               <TrendChart entity={entity} def={STAT_BY_ID[activeStat]} />
+              {activeStat === 'livability' ? (
+                <>
+                  <h3 className="mt-5 mb-2 font-heading text-sm font-medium">Score breakdown</h3>
+                  <p className="mb-3 text-xs text-muted-foreground">
+                    Percentile vs other {entity.level === 'city' ? 'large cities' : 'states'} this year (0 = worst
+                    peer, 100 = best). Weighted 25% prosperity, 25% affordability, 20% opportunity, 20% safety, 10%
+                    momentum.
+                  </p>
+                  <PillarBreakdown entity={entity} year={year} />
+                </>
+              ) : null}
               <h3 className="mt-5 mb-2 font-heading text-sm font-medium">Age distribution</h3>
               <AgeChart entity={entity} year={year} />
               <h3 className="mt-5 mb-2 font-heading text-sm font-medium">Demographics</h3>

@@ -24,7 +24,7 @@ export default function App() {
           <div>
             <h1 className="font-heading text-lg font-medium tracking-tight">US State Finder</h1>
             <p className="text-sm text-muted-foreground">
-              Compare states and major cities for a 2026 move — population, cost, jobs, crime, and the economy.
+              Compare states and major cities for a 2026 move — livability, cost, jobs, crime, and the economy.
             </p>
           </div>
         </div>

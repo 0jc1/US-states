@@ -1,5 +1,6 @@
 import type { AgeBuckets, DemographicShares, Industry, StateEntity, YearSeries } from '../../src/lib/types.ts'
 import { STATES } from '../lib/states.ts'
+import { GDP_BILLIONS } from './gdp.ts'
 
 const YEARS = [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026] as const
 
@@ -92,8 +93,8 @@ type Anchor = {
  * RPP: BEA Regional Price Parities (all-items / rents).
  * Home value: Zillow ZHVI typical home, rounded.
  * Unemployment / jobs: BLS LAUS + CES.
- * GDP: BEA SAGDP current-dollar, billions.
- * Crime: FBI CDE violent + property per 100k (latest complete year).
+ * GDP: BEA SAGDP1 current-dollar (see gdp.ts). 2026 uses that state's 2024→2025 growth.
+ * Crime: FBI CDE violent + property per 100k (latest complete year only; later years fill-forward).
  * Live fetch overlays replace these when the source download succeeds.
  */
 const ANCHORS: Record<string, Anchor> = {
@@ -176,18 +177,24 @@ export function buildFallbackStates(): Record<string, StateEntity> {
       const prev = employment[String(y - 1)] ?? (y === 2019 ? a.jobs2019 / 1.012 : undefined)
       if (cur && prev) jobGrowth[String(y)] = round(((cur - prev) / prev) * 100, 2)
     }
-    const violentCrime = seriesFromAnchors({ 2019: a.violent * 1.08, 2022: a.violent * 1.12, 2024: a.violent, 2025: a.violent * 0.96 })
-    const propertyCrime = seriesFromAnchors({ 2019: a.property * 1.04, 2022: a.property * 1.08, 2024: a.property, 2025: a.property * 0.97 })
-    const crimeRate: YearSeries = {}
-    for (const y of YEARS) {
-      const v = violentCrime[String(y)]
-      const p = propertyCrime[String(y)]
-      if (v !== undefined && p !== undefined) crimeRate[String(y)] = round(v + p, 1)
+    // Latest complete FBI year only — do not invent a shared YoY path for 2019–2023.
+    const violentCrime: YearSeries = { '2024': a.violent }
+    const propertyCrime: YearSeries = { '2024': a.property }
+    for (const y of [2025, 2026]) {
+      violentCrime[String(y)] = a.violent
+      propertyCrime[String(y)] = a.property
     }
+    const crimeRate: YearSeries = {}
+    for (const y of Object.keys(violentCrime)) {
+      crimeRate[y] = round((violentCrime[y] ?? 0) + (propertyCrime[y] ?? 0), 1)
+    }
+    const gdpAnchors = GDP_BILLIONS[meta.abbr]
+    const gdpSeries = seriesFromAnchors(
+      Object.fromEntries(Object.entries(gdpAnchors).map(([y, v]) => [Number(y), v])),
+      { growth2026: relative(gdpAnchors[2024], gdpAnchors[2025]) },
+    )
     const totalGdp: YearSeries = {}
     const gdpPerCapita: YearSeries = {}
-    const gdp2019 = a.gdp2025e12 * 0.78
-    const gdpSeries = seriesFromAnchors({ 2019: gdp2019, 2022: a.gdp2025e12 * 0.9, 2025: a.gdp2025e12 })
     for (const y of YEARS) {
       const billions = gdpSeries[String(y)]
       const pop = population[String(y)]
@@ -222,7 +229,7 @@ export function buildFallbackStates(): Record<string, StateEntity> {
       industries[String(y)] = a.industries.map(([sector, share]) => ({
         sector,
         share,
-        gdp: round((gdpSeries[String(y)] ?? a.gdp2025e12) * 1000 * share, 1),
+        gdp: round((gdpSeries[String(y)] ?? gdpAnchors[2025]) * 1000 * share, 1),
       }))
     }
     out[meta.abbr] = {
