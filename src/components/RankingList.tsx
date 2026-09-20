@@ -1,5 +1,7 @@
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Badge } from '@/components/ui/badge'
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card'
+import { LivabilityExplainer } from '@/components/LivabilityExplainer'
 import { CITIES, STATE_LIST } from '@/lib/data'
 import { formatPct, formatValue } from '@/lib/format'
 import { getValue, type StatDef } from '@/lib/stats'
@@ -40,7 +42,25 @@ export function RankingList({
       <div className="border-b px-3 py-2">
         <div className="font-heading text-sm font-medium">Ranking</div>
         <div className="text-xs text-muted-foreground">
-          {layer === 'cities' ? '50 largest cities' : 'States'} · {def.shortLabel} · {year}
+          {layer === 'cities' ? '50 largest cities' : 'States'} ·{' '}
+          {def.id === 'livability' ? (
+            <HoverCard openDelay={120} closeDelay={80}>
+              <HoverCardTrigger asChild>
+                <button
+                  type="button"
+                  className="text-foreground underline decoration-dotted underline-offset-4 hover:text-foreground"
+                >
+                  {def.shortLabel}
+                </button>
+              </HoverCardTrigger>
+              <HoverCardContent side="left" align="start" sideOffset={12} className="w-80 p-3">
+                <LivabilityExplainer layer={layer} />
+              </HoverCardContent>
+            </HoverCard>
+          ) : (
+            def.shortLabel
+          )}{' '}
+          · {year}
         </div>
       </div>
       <ScrollArea className="min-h-0 flex-1">
