@@ -1,0 +1,83 @@
+[
+  {
+    "statId": "population",
+    "dataset": "Vintage 2025 Population Estimates (NST-EST2025) + Wikipedia tables",
+    "publisher": "U.S. Census Bureau",
+    "url": "https://www.census.gov/data/tables/time-series/demo/popest/2020s-state-total.html",
+    "vintage": "July 1, 2025 (released Jan 2026)",
+    "years": "2019–2026",
+    "notes": "2026 is a trend extrapolation when Census has not published July 1, 2026 yet."
+  },
+  {
+    "statId": "demographics",
+    "dataset": "ACS 1-year race/ethnicity (B03002)",
+    "publisher": "U.S. Census Bureau",
+    "url": "https://www.census.gov/programs-surveys/acs",
+    "vintage": "ACS 2023/2024 1-year",
+    "years": "2019–2026"
+  },
+  {
+    "statId": "ageDistribution",
+    "dataset": "ACS 1-year age (S0101) / Census estimates",
+    "publisher": "U.S. Census Bureau",
+    "url": "https://www.census.gov/programs-surveys/acs",
+    "vintage": "ACS 2023/2024 1-year",
+    "years": "2019–2026"
+  },
+  {
+    "statId": "costOfLiving",
+    "dataset": "Regional Price Parities (SARPP / MARPP)",
+    "publisher": "U.S. Bureau of Economic Analysis",
+    "url": "https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area",
+    "vintage": "BEA RPP 2023–2024",
+    "years": "2019–2025"
+  },
+  {
+    "statId": "costOfHousing",
+    "dataset": "Zillow Home Value Index (ZHVI), typical home, smoothed seasonally adjusted",
+    "publisher": "Zillow Research",
+    "url": "https://www.zillow.com/research/data/",
+    "vintage": "monthly through 2026",
+    "years": "2019–2026"
+  },
+  {
+    "statId": "jobGrowth",
+    "dataset": "CES / QCEW-aligned nonfarm employment, YoY %",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "url": "https://www.bls.gov/sae/",
+    "vintage": "BLS 2025 annual; 2026 YTD",
+    "years": "2019–2026"
+  },
+  {
+    "statId": "unemploymentRate",
+    "dataset": "Local Area Unemployment Statistics (LAUS)",
+    "publisher": "U.S. Bureau of Labor Statistics",
+    "url": "https://download.bls.gov/pub/time.series/la/",
+    "vintage": "annual averages; 2026 YTD",
+    "years": "2019–2026"
+  },
+  {
+    "statId": "crimeRate",
+    "dataset": "Crime Data Explorer summarized rates",
+    "publisher": "Federal Bureau of Investigation",
+    "url": "https://cde.ucr.cjis.gov/",
+    "vintage": "2019–2025 monthly; 2026 YTD if published",
+    "years": "2019–2026"
+  },
+  {
+    "statId": "gdpPerCapita",
+    "dataset": "GDP by state (SAGDP) / metro (CAGDP)",
+    "publisher": "U.S. Bureau of Economic Analysis",
+    "url": "https://www.bea.gov/data/gdp/gdp-state",
+    "vintage": "Annual 2025 (Mar 2026 release)",
+    "years": "2019–2025"
+  },
+  {
+    "statId": "totalGdp",
+    "dataset": "GDP by state, current dollars (SAGDP1)",
+    "publisher": "U.S. Bureau of Economic Analysis",
+    "url": "https://www.bea.gov/data/gdp/gdp-state",
+    "vintage": "Annual 2025",
+    "years": "2019–2025"
+  }
+]
