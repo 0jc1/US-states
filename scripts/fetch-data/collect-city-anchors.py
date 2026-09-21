@@ -42,6 +42,12 @@ CRIME_ALIASES = {
     ("NORTH CAROLINA", "Charlotte-Mecklenburg"): "charlotte",
 }
 
+# Table 8 2024 omitted these agencies. Latest complete FBI UCR year instead of dropping Safety.
+CRIME_FALLBACKS: dict[str, tuple[float, float]] = {
+    "atlanta": (707.3, 3892.5),  # FBI UCR 2023, Atlanta PD
+    "jacksonville": (597.0, 2653.0),  # FBI 2024 via JSO (per 100k)
+}
+
 STATE_FIPS = {
     "AL": "01", "AK": "02", "AZ": "04", "AR": "05", "CA": "06", "CO": "08", "CT": "09",
     "DC": "11", "DE": "10", "FL": "12", "GA": "13", "HI": "15", "ID": "16", "IL": "17",
@@ -287,6 +293,8 @@ def load_crime(seeds: list[dict]) -> dict[str, tuple[float, float]]:
         if not cid:
             continue
         out[cid] = (round(violent / pop * 1e5, 1), round(prop / pop * 1e5, 1))
+    for cid, pair in CRIME_FALLBACKS.items():
+        out.setdefault(cid, pair)
     return out
 
 

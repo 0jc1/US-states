@@ -77,7 +77,7 @@
     "url": "https://cde.ucr.cjis.gov/",
     "vintage": "FBI Table 8 / CDE latest complete year (2024); 2025–2026 fill-forward",
     "years": "2024–2026",
-    "notes": "Cities: FBI Table 8 counts as rates per 100k. Atlanta and Jacksonville did not publish usable 2024 figures. States: CDE/state rates. No invented 2019–2023 path."
+    "notes": "Cities: FBI Table 8 2024 counts as rates per 100k. Atlanta uses FBI UCR 2023 (APD); Jacksonville uses FBI 2024 via Jacksonville Sheriff’s Office. 2025–2026 fill-forward. States: CDE/state rates."
   },
   {
     "statId": "gdpPerCapita",
