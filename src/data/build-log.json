@@ -1,7 +1,8 @@
 {
-  "builtAt": "2026-09-20T22:17:41.798Z",
+  "builtAt": "2026-09-20T23:36:10.368Z",
   "notes": [
     "seed fallback loaded (Census/ACS/BEA/BLS/FBI/Zillow vintages)",
+    "city anchors: BEA county GDP + metro RPP, BLS city LAUS, ACS place, Zillow city ZHVI, FBI Table 8",
     "offline build (pass --live to download official tables)"
   ]
 }

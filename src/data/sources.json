@@ -6,7 +6,7 @@
     "url": "https://www.bea.gov/data/gdp/gdp-state",
     "vintage": "Peer percentiles, 2019–2026",
     "years": "2019–2026",
-    "notes": "Weighted move score (prosperity 25%, affordability 25%, opportunity 20%, safety 20%, momentum 10%). States and cities scored separately. Uses 2025 levels for GDP, not GDP growth."
+    "notes": "Weighted move score (prosperity 25%, affordability 25%, opportunity 20%, safety 20%, momentum 10%). States and cities scored separately. Uses GDP levels, not GDP growth. City GDP is the principal county; prices are metro RPP; jobs and crime are city-level where published."
   },
   {
     "statId": "population",
@@ -22,16 +22,18 @@
     "dataset": "ACS 1-year race/ethnicity (B03002)",
     "publisher": "U.S. Census Bureau",
     "url": "https://www.census.gov/programs-surveys/acs",
-    "vintage": "ACS 2023/2024 1-year",
-    "years": "2019–2026"
+    "vintage": "ACS 1-year via Census Reporter, latest available",
+    "years": "2019–2026",
+    "notes": "Cities use place-level ACS. States use ACS-vintage statewide shares."
   },
   {
     "statId": "ageDistribution",
-    "dataset": "ACS 1-year age (S0101) / Census estimates",
+    "dataset": "ACS 1-year age (S0101 / B01001) / Census estimates",
     "publisher": "U.S. Census Bureau",
     "url": "https://www.census.gov/programs-surveys/acs",
-    "vintage": "ACS 2023/2024 1-year",
-    "years": "2019–2026"
+    "vintage": "ACS 1-year via Census Reporter, latest available",
+    "years": "2019–2026",
+    "notes": "Cities use place-level median age and age buckets. States use ACS-vintage statewide figures."
   },
   {
     "statId": "costOfLiving",
@@ -39,7 +41,8 @@
     "publisher": "U.S. Bureau of Economic Analysis",
     "url": "https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area",
     "vintage": "BEA RPP 2023–2024",
-    "years": "2019–2025"
+    "years": "2019–2025",
+    "notes": "States: SARPP. Cities: MARPP for the city’s metro area (not city limits)."
   },
   {
     "statId": "costOfHousing",
@@ -55,7 +58,8 @@
     "publisher": "U.S. Bureau of Labor Statistics",
     "url": "https://www.bls.gov/sae/",
     "vintage": "BLS 2025 annual; 2026 YTD",
-    "years": "2019–2026"
+    "years": "2019–2026",
+    "notes": "States: CES-style nonfarm. Cities: year-over-year change in LAUS civilian employment."
   },
   {
     "statId": "unemploymentRate",
@@ -63,23 +67,24 @@
     "publisher": "U.S. Bureau of Labor Statistics",
     "url": "https://download.bls.gov/pub/time.series/la/",
     "vintage": "annual averages; 2026 YTD",
-    "years": "2019–2026"
+    "years": "2019–2026",
+    "notes": "States: statewide LAUS. Cities: BLS city series; Nashville and Louisville use the metro series."
   },
   {
     "statId": "crimeRate",
     "dataset": "Crime Data Explorer summarized rates",
     "publisher": "Federal Bureau of Investigation",
     "url": "https://cde.ucr.cjis.gov/",
-    "vintage": "FBI CDE latest complete year (2024); 2025–2026 fill-forward",
+    "vintage": "FBI Table 8 / CDE latest complete year (2024); 2025–2026 fill-forward",
     "years": "2024–2026",
-    "notes": "No invented 2019–2023 path. Earlier years are omitted unless a live CDE overlay succeeds."
+    "notes": "Cities: FBI Table 8 counts as rates per 100k. Atlanta and Jacksonville did not publish usable 2024 figures. States: CDE/state rates. No invented 2019–2023 path."
   },
   {
     "statId": "gdpPerCapita",
-    "dataset": "GDP by state (SAGDP) / metro (CAGDP)",
+    "dataset": "GDP by state (SAGDP) / county (CAGDP1)",
     "publisher": "U.S. Bureau of Economic Analysis",
     "url": "https://www.bea.gov/data/gdp/gdp-state",
-    "vintage": "BEA SAGDP1 current-dollar, 2019–2025; 2026 is that state’s 2024→2025 growth",
+    "vintage": "BEA SAGDP1 current-dollar, 2019–2025 for states; CAGDP1 through 2024 for a city’s principal county (NYC sums the five boroughs); later years fill-forward",
     "years": "2019–2026"
   },
   {

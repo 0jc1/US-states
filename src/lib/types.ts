@@ -82,7 +82,7 @@ export interface CityEntity extends EntityBase {
   state: string
   lat: number
   lng: number
-  /** metro area used for metro-level stats (GDP, RPP, unemployment) */
+  /** metro area used for BEA regional price parities */
   metro?: string
 }
 
